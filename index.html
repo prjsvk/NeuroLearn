@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroLearn - AI-Powered Learning Platform | Accessible UX-First Design</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Dyslexia Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=OpenDyslexic:wght@400;700&display=swap">
+</head>
+<body>
+    <!-- Skip to content link for keyboard users -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header>
+        <div class="particles" id="particles-js"></div>
+        <div class="header-content">
+            <nav>
+                <div class="logo">Neuro<span>Learn</span></div>
+                <div class="nav-links">
+                    <a href="#">Home</a>
+                    <a href="#features">Features</a>
+                    <a href="#ux-principles">UX Principles</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <button id="accessibilityNavToggle" aria-label="Open accessibility controls" aria-expanded="false" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">
+                    <i class="fas fa-universal-access"></i>
+                </button>
+            </nav>
+            
+            <main id="main-content">
+                <div class="hero">
+                    <div class="hero-text">
+                        <h1>Where <span>Technology</span> Meets Exceptional <span>User Experience</span></h1>
+                        <p class="subtitle">In today's digital world, great technology isn't enough — it has to feel great too. NeuroLearn combines cutting-edge AI with intuitive design to create learning experiences that are as delightful as they are effective.</p>
+                        <a href="#" class="cta-button">Experience the Difference</a>
+                        
+                        <div class="stats">
+                            <div class="stat-item">
+                                <div class="stat-number">98%</div>
+                                <div class="stat-label">User Satisfaction</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">10x</div>
+                                <div class="stat-label">Faster Learning</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">24/7</div>
+                                <div class="stat-label">AI Tutor Access</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-image floating">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="AI Learning Platform Interface showing adaptive learning technology">
+                    </div>
+                </div>
+            </main>
+        </div>
+    </header>
+
+    <!-- Accessibility Controls Panel -->
+    <div class="accessibility-panel" id="accessibilityPanel" aria-hidden="true">
+        <button class="accessibility-toggle" id="closeAccessibility" aria-label="Close accessibility controls">
+            <i class="fas fa-times"></i>
+        </button>
+        <h3 style="margin-bottom: 1rem; text-align: center;">Accessibility Controls</h3>
+        
+        <div class="accessibility-section">
+            <h4>Text & Display</h4>
+            <div class="accessibility-options">
+                <button class="accessibility-btn" id="increaseFont">
+                    <i class="fas fa-text-height"></i>
+                    <span>Increase Text</span>
+                </button>
+                <button class="accessibility-btn" id="decreaseFont">
+                    <i class="fas fa-text-width"></i>
+                    <span>Decrease Text</span>
+                </button>
+                <button class="accessibility-btn" id="highContrast">
+                    <i class="fas fa-adjust"></i>
+                    <span>High Contrast</span>
+                </button>
+                <button class="accessibility-btn" id="dyslexiaMode">
+                    <i class="fas fa-font"></i>
+                    <span>Dyslexia Mode</span>
+                </button>
+                <button class="accessibility-btn" id="grayscale">
+                    <i class="fas fa-palette"></i>
+                    <span>Grayscale</span>
+                </button>
+                <button class="accessibility-btn" id="resetAccessibility">
+                    <i class="fas fa-undo"></i>
+                    <span>Reset All</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="accessibility-section">
+            <h4>Speech Controls</h4>
+            <div class="speech-controls">
+                <button class="speech-btn" id="readPage">
+                    <i class="fas fa-volume-up"></i>
+                    <span>Read Page</span>
+                </button>
+                <button class="speech-btn stop" id="stopSpeech">
+                    <i class="fas fa-stop"></i>
+                    <span>Stop</span>
+                </button>
+            </div>
+            <div class="disability-options" id="speechOptions">
+                <div class="disability-option">
+                    <input type="radio" id="readAll" name="speechOption" value="all" checked>
+                    <label for="readAll">Read entire page</label>
+                </div>
+                <div class="disability-option">
+                    <input type="radio" id="readMain" name="speechOption" value="main">
+                    <label for="readMain">Read main content only</label>
+                </div>
+                <div class="disability-option">
+                    <input type="radio" id="readSection" name="speechOption" value="section">
+                    <label for="readSection">Read current section</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="accessibility-section">
+            <h4>Disability-Specific Modes</h4>
+            <button class="accessibility-btn" id="showDisabilityOptions">
+                <i class="fas fa-wheelchair"></i>
+                <span>Show Options</span>
+            </button>
+            <div class="disability-options" id="disabilityOptions">
+                <div class="disability-option">
+                    <input type="checkbox" id="visualImpairment">
+                    <label for="visualImpairment">Visual Impairment Mode</label>
+                </div>
+                <div class="disability-option">
+                    <input type="checkbox" id="hearingImpairment">
+                    <label for="hearingImpairment">Hearing Impairment Mode</label>
+                </div>
+                <div class="disability-option">
+                    <input type="checkbox" id="motorDisability">
+                    <label for="motorDisability">Motor Disability Mode</label>
+                </div>
+                <div class="disability-option">
+                    <input type="checkbox" id="cognitiveDisability">
+                    <label for="cognitiveDisability">Cognitive Disability Mode</label>
+                </div>
+                <div class="disability-option">
+                    <input type="checkbox" id="seizureSafe">
+                    <label for="seizureSafe">Seizure Safe Mode</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="ux-principles" id="ux-principles">
+        <h2 class="section-title" style="color: var(--dark);">Our UX-First Philosophy</h2>
+        <div class="principles-container">
+            <div class="principle-card">
+                <h3 class="principle-title">Intuitive by Design</h3>
+                <p class="principle-description">Every interaction feels natural and effortless. We've eliminated complexity so you can focus on learning, not figuring out how to use the platform.</p>
+            </div>
+            <div class="principle-card">
+                <h3 class="principle-title">Accessible to All</h3>
+                <p class="principle-description">Designed with inclusivity in mind, our platform adapts to diverse needs and learning styles, ensuring everyone can benefit equally.</p>
+            </div>
+            <div class="principle-card">
+                <h3 class="principle-title">Delightful Interactions</h3>
+                <p class="principle-description">From micro-animations to personalized feedback, we've infused joy into every part of the learning journey.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <h2 class="section-title">UX-Centric Features</h2>
+        <div class="features-container">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-magic"></i>
+                </div>
+                <h3 class="feature-title">One-Click Learning</h3>
+                <p class="feature-description">Our simplified interface gets you learning faster with minimal setup. Just choose your topic and let our AI guide you.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3 class="feature-title">Context-Aware AI Tutor</h3>
+                <p class="feature-description">Our AI understands not just what you're learning, but how you're learning it, adapting in real-time to your unique needs.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3 class="feature-title">Cognitive Load Optimization</h3>
+                <p class="feature-description">We carefully balance information presentation to maximize retention while minimizing mental fatigue.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <h3 class="feature-title">Just-in-Time Help</h3>
+                <p class="feature-description">Contextual assistance appears exactly when needed and disappears when not, keeping your focus undisturbed.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="feature-title">Progress Visualization</h3>
+                <p class="feature-description">Beautiful, intuitive dashboards show your learning journey at a glance with actionable insights.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-sliders-h"></i>
+                </div>
+                <h3 class="feature-title">Personalized UX Settings</h3>
+                <p class="feature-description">Tailor the interface to your preferences with our extensive personalization options.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="accessibility-features">
+        <h2 class="section-title">Built-In Accessibility</h2>
+        <div class="accessibility-grid">
+            <div class="accessibility-card">
+                <div class="accessibility-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h3>Visual Accessibility</h3>
+                <p>Screen reader compatibility, high contrast modes, text resizing, and color blindness adjustments.</p>
+            </div>
+            <div class="accessibility-card">
+                <div class="accessibility-icon">
+                    <i class="fas fa-assistive-listening-systems"></i>
+                </div>
+                <h3>Auditory Support</h3>
+                <p>Closed captions, transcripts, visual alerts, and adjustable playback speeds for all audio content.</p>
+            </div>
+            <div class="accessibility-card">
+                <div class="accessibility-icon">
+                    <i class="fas fa-hand-paper"></i>
+                </div>
+                <h3>Motor Adaptation</h3>
+                <p>Full keyboard navigation, voice control compatibility, and reduced need for precise inputs.</p>
+            </div>
+            <div class="accessibility-card">
+                <div class="accessibility-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3>Cognitive Considerations</h3>
+                <p>Clear language, consistent navigation, distraction reduction, and memory aids throughout.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="ai-assistants">
+        <h2 class="section-title">Your AI Learning Companions</h2>
+        <div class="assistant-container">
+            <div class="assistant-image floating">
+                <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="AI assistant interface showing friendly chatbot">
+            </div>
+            <div class="assistant-content">
+                <h3 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--primary);">Meet Your Personal Learning Assistant</h3>
+                <p style="font-size: 1.1rem; margin-bottom: 1.5rem; line-height: 1.8;">Our AI doesn't just teach - it understands. Using natural language processing and emotional intelligence algorithms, your assistant adapts to your learning style, mood, and even your schedule to provide the perfect learning experience at the perfect time.</p>
+                <p style="font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.8;">Whether you need a patient explainer, a challenging quizmaster, or an encouraging coach, your AI assistant transforms to meet your needs.</p>
+                <div class="assistant-buttons">
+                    <a href="#" class="cta-button" style="background-color: var(--primary);">Try the Demo</a>
+                    <a href="#" class="cta-button" style="background-color: transparent; border: 2px solid var(--primary); color: var(--primary);">See How It Works</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="disability-assistants">
+        <h2 class="section-title">Specialized Assistance</h2>
+        <div class="assistant-tabs">
+            <button class="assistant-tab active" data-tab="visual">Visual Impairment</button>
+            <button class="assistant-tab" data-tab="hearing">Hearing Impairment</button>
+            <button class="assistant-tab" data-tab="motor">Motor Disability</button>
+            <button class="assistant-tab" data-tab="cognitive">Cognitive Differences</button>
+        </div>
+        
+        <div class="assistant-content active" id="visual-content">
+            <div class="assistant-container">
+                <div class="assistant-image">
+                    <img src="https://images.unsplash.com/photo-1546483875-ad9014c88eba?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Close-up of a person using a screen reader with headphones and braille display">
+                </div>
+                <div class="assistant-content">
+                    <h3>Visual Assistance Technology</h3>
+                    <p>Our platform seamlessly integrates with screen readers while providing enhanced audio descriptions, tactile learning options, and voice-controlled navigation. The AI assistant provides detailed verbal explanations of visual content and can adapt presentation styles based on your level of visual ability.</p>
+                    <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                        <li style="margin-bottom: 0.5rem;">Compatible with JAWS, NVDA, and VoiceOver</li>
+                        <li style="margin-bottom: 0.5rem;">Dynamic text-to-speech with adjustable speeds</li>
+                        <li style="margin-bottom: 0.5rem;">Audio-based navigation cues</li>
+                        <li style="margin-bottom: 0.5rem;">High contrast and large text modes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="assistant-content" id="hearing-content">
+            <div class="assistant-container">
+                <div class="assistant-image">
+                    <img src="https://images.unsplash.com/photo-1607962837359-5e7e89f86776?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Video with closed captions and sign language interpreter">
+                </div>
+                <div class="assistant-content">
+                    <h3>Hearing Assistance Technology</h3>
+                    <p>All audio content is automatically captioned with adjustable display options. Our system can integrate with sign language avatars and provides visual alternatives to audio cues. The platform also offers speech-to-text functionality for interactive discussions.</p>
+                    <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                        <li style="margin-bottom: 0.5rem;">Real-time closed captions with speaker identification</li>
+                        <li style="margin-bottom: 0.5rem;">Visual alert systems</li>
+                        <li style="margin-bottom: 0.5rem;">Sign language interpretation options</li>
+                        <li style="margin-bottom: 0.5rem;">Vibration patterns for notifications</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="assistant-content" id="motor-content">
+            <div class="assistant-container">
+                <div class="assistant-image">
+                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Person using head pointer to interact with computer">
+                </div>
+                <div class="assistant-content">
+                    <h3>Motor Assistance Technology</h3>
+                    <p>The platform is fully operable through keyboard, voice commands, eye tracking, and adaptive devices. We've eliminated time-sensitive interactions and provide alternatives for drag-and-drop activities. The interface can be customized to reduce the need for precise pointer control.</p>
+                    <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                        <li style="margin-bottom: 0.5rem;">Customizable input timeout settings</li>
+                        <li style="margin-bottom: 0.5rem;">Voice command integration</li>
+                        <li style="margin-bottom: 0.5rem;">Alternative input device compatibility</li>
+                        <li style="margin-bottom: 0.5rem;">Reduced fine motor requirements</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="assistant-content" id="cognitive-content">
+            <div class="assistant-container">
+                <div class="assistant-image">
+                    <img src="https://images.unsplash.com/photo-1591696205602-2f950c417cb9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Simplified interface with clear instructions">
+                </div>
+                <div class="assistant-content">
+                    <h3>Cognitive Assistance Technology</h3>
+                    <p>We offer simplified interfaces, reading assistance tools, memory aids, and distraction-reduced modes. The AI assistant can rephrase complex concepts, provide step-by-step guidance, and offer frequent reinforcement. Users can control the amount of information presented at once and set personalized reminders.</p>
+                    <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                        <li style="margin-bottom: 0.5rem;">Text simplification options</li>
+                        <li style="margin-bottom: 0.5rem;">Focus mode to reduce distractions</li>
+                        <li style="margin-bottom: 0.5rem;">Visual organization tools</li>
+                        <li style="margin-bottom: 0.5rem;">Customizable repetition settings</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ux-challenge">
+        <div class="challenge-container">
+            <h2 class="section-title">The UX Challenge</h2>
+            <p class="challenge-text">Most learning platforms focus on content delivery without considering how users interact with that content. We started with a different question:</p>
+            <div class="challenge-highlight">"How would we design this if learning success depended entirely on the user experience?"</div>
+            <p class="challenge-text">The answer became NeuroLearn - where every pixel, interaction, and algorithm is optimized to remove barriers and amplify learning potential.</p>
+            <a href="#" class="cta-button" style="background-color: white; color: var(--primary); margin-top: 2rem;">Join the UX Revolution</a>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2 class="section-title">What Learners Say</h2>
+        <div class="testimonials-container">
+            <div class="testimonial-slider">
+                <div class="testimonial-slide">
+                    <p class="testimonial-content">"As someone with dyslexia, I've always struggled with online learning platforms. NeuroLearn's dyslexia mode and audio support have changed everything for me. I'm finally able to focus on learning rather than fighting with the interface."</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah J." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Sarah J.</h4>
+                            <p>Graphic Designer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">Neuro<span>Learn</span></div>
+                <p class="footer-about">Making learning accessible and enjoyable through thoughtful design and innovative technology.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>Product</h3>
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Accessibility</a></li>
+                    <li><a href="#">Roadmap</a></li>
+                    <li><a href="#">Demo</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">UX Research</a></li>
+                    <li><a href="#">Learning Guides</a></li>
+                    <li><a href="#">Webinars</a></li>
+                    <li><a href="#">Accessibility Toolkit</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Partners</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h3>Stay Updated</h3>
+                <input type="email" placeholder="Your email address" aria-label="Email for newsletter subscription">
+                <button type="submit">Subscribe</button>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 NeuroLearn. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Accessibility Statement</a></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
