@@ -1,4 +1,4 @@
-# **NeuroLearn 🎓 - AI-Powered Accessible Learning Platform 🔍
+# NeuroLearn 🎓 - AI-Powered Accessible Learning Platform 🔍
 Inclusive learning, reimagined. 🤖
 
 Overview
