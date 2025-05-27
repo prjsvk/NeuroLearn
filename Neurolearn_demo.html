@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>NeuroLearn - AI-Powered Learning Platform | Accessible UX-First Design</title>
+ <style>
+ :root {
+ --primary: #6c5ce7;
+ --secondary: #00cec9;
+ --dark: #2d3436;
+ --light: #f5f6fa;
+ --accent: #fd79a8;
+ --success: #00b894;
+ --focus-ring: 0 0 0 3px rgba(108, 92, 231, 0.5);
+ }
+ * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ font-family: 'Poppins', sans-serif;
+ }
+ body {
+ background-color: var(--light);
+ color: var(--dark);
+ overflow-x: hidden;
+ line-height: 1.6;
+ transition: all 0.3s ease;
+ }
+ /* High Contrast Mode */
+ body.high-contrast {
+ --primary: #0000FF;
+ --secondary: #0066CC;
+ --dark: #000000;
+ --light: #FFFFFF;
+ --accent: #FF00FF;
+ background-color: white !important;
+ color: black !important;
+ }
+ body.high-contrast * {
+ font-weight: bold !important;
+ }
+ /* Dyslexia-Friendly Mode */
+ body.dyslexia-mode {
+ font-family: 'OpenDyslexic', sans-serif;
+ letter-spacing: 1px;
+ line-height: 1.8;
+ }
+ /* Grayscale Mode */
+ body.grayscale {
+ filter: grayscale(100%);
+ }
+ /* Reduced Motion Mode */
+ @media (prefers-reduced-motion: reduce) {
+ * {
+ animation: none !important;
+ transition: none !important;
+ }
+ .floating {
+ animation: none !important;
+ }
+ }
+ /* Skip to content link for keyboard users */
+ .skip-link {
+ position: absolute;
+ top: -40px;
+ left: 0;
+ background: var(--primary);
+ color: white;
+ padding: 8px;
+ z-index: 100;
+ transition: top 0.3s;
+ }
+ .skip-link:focus {
+ top: 0;
+ }
+ header {
+ background: linear-gradient(135deg, var(--primary), var(--secondary));
+ color: white;
+ padding: 2rem 5%;
+ position: relative;
+ overflow: hidden;
+ min-height: 100vh;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ }
+ .particles {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ z-index: 1;
+ }
+ .header-content {
+ position: relative;
+ z-index: 2;
+ max-width: 1200px;
+ margin: 0 auto;
+ }
+ nav {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-bottom: 4rem;
+ }
+ .logo {
+ font-size: 2rem;
+ font-weight: 700;
+ display: flex;
+ align-items: center;
+ color: white;
+ }
+ .logo span {
+ color: var(--accent);
+ }
+ .nav-links {
+ display: flex;
+ gap: 2rem;
+ }
+ .nav-links a {
+ color: white;
+ text-decoration: none;
+ font-weight: 500;
+ transition: all 0.3s ease;
+ position: relative;
+ padding: 0.5rem;
+ border-radius: 4px;
+ }
+ .nav-links a:hover, .nav-links a:focus {
+ color: var(--accent);
+ background-color: rgba(255, 255, 255, 0.1);
+ outline: none;
+ }
+ .hero {
+ display: flex;
+ align-items: center;
+ gap: 4rem;
+ margin-top: 2rem;
+ }
+ .hero-text {
+ flex: 1;
+ }
+ .hero-image {
+ flex: 1;
+ position: relative;
+ }
+ .hero-image img {
+ width: 100%;
+ border-radius: 20px;
+ box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+ transform: perspective(1000px) rotateY(-10deg);
+ transition: all 0.5s ease;
+ }
+ .hero-image:hover img {
+ transform: perspective(1000px) rotateY(0deg);
+ }
+ h1 {
+ font-size: 3.5rem;
+ margin-bottom: 1.5rem;
+ line-height: 1.2;
+ color: white;
+ }
+ h1 span {
+ color: var(--accent);
+ position: relative;
+ display: inline-block;
+ }
+ h1 span::after {
+ content: '';
+ position: absolute;
+ bottom: 5px;
+ left: 0;
+ width: 100%;
+ height: 15px;
+ background-color: rgba(253, 121, 168, 0.3);
+ z-index: -1;
+ }
+ .subtitle {
+ font-size: 1.2rem;
+ margin-bottom: 2rem;
+ opacity: 0.9;
+ max-width: 600px;
+ color: white;
+ }
+ .cta-button {
+ display: inline-block;
+ background-color: var(--accent);
+ color: white;
+ padding: 1rem 2rem;
+ border-radius: 50px;
+ text-decoration: none;
+ font-weight: 600;
+ transition: all 0.3s ease;
+ box-shadow: 0 10px 20px rgba(253, 121, 168, 0.3);
+ border: 2px solid transparent;
+ }
+ .cta-button:hover, .cta-button:focus {
+ transform: translateY(-5px);
+ box-shadow: 0 15px 30px rgba(253, 121, 168, 0.4);
+ outline: none;
+ border-color: white;
+ }
+ .stats {
+ display: flex;
+ gap: 2rem;
+ margin-top: 3rem;
+ }
+ .stat-item {
+ background-color: rgba(255, 255, 255, 0.1);
+ padding: 1.5rem;
+ border-radius: 15px;
+ backdrop-filter: blur(10px);
+ min-width: 180px;
+ }
+ .stat-number {
+ font-size: 2.5rem;
+ font-weight: 700;
+ margin-bottom: 0.5rem;
+ background: linear-gradient(to right, white, var(--accent));
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ }
+ .stat-label {
+ font-size: 0.9rem;
+ opacity: 0.8;
+ color: white;
+ }
+ /* Accessibility Controls */
+ .accessibility-panel {
+ position: fixed;
+ bottom: 20px;
+ right: 20px;
+ z-index: 1000;
+ background: white;
+ border-radius: 10px;
+ box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+ padding: 1rem;
+ transform: translateY(150%);
+ transition: transform 0.3s ease;
+ width: 350px;
+ max-width: 90vw;
+ }
+ .accessibility-panel.visible {
+ transform: translateY(0);
+ }
+ .accessibility-toggle {
+ position: absolute;
+ top: -40px;
+ right: 0;
+ background: var(--primary);
+ color: white;
+ border: none;
+ border-radius: 50%;
+ width: 50px;
+ height: 50px;
+ font-size: 1.5rem;
+ cursor: pointer;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+ }
+ .accessibility-options {
+ display: grid;
+ grid-template-columns: repeat(2, 1fr);
+ gap: 0.5rem;
+ }
+ .accessibility-btn {
+ background: var(--light);
+ border: 1px solid #ddd;
+ border-radius: 5px;
+ padding: 0.5rem;
+ cursor: pointer;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ font-size: 0.8rem;
+ transition: all 0.2s;
+ }
+ .accessibility-btn:hover {
+ background: #eee;
+ }
+ .accessibility-btn i {
+ font-size: 1.2rem;
+ margin-bottom: 0.3rem;
+ }
+ .accessibility-section {
+ margin-bottom: 1rem;
+ padding-bottom: 1rem;
+ border-bottom: 1px solid #eee;
+ }
+ .accessibility-section h4 {
+ margin-bottom: 0.5rem;
+ color: var(--primary);
+ }
+
+
+ /* Add these to your existing CSS */
+ .hearing-impairment video,
+ .hearing-impairment audio {
+ display: none;
+ }
+ .hearing-impairment .audio-content {
+ position: relative;
+ }
+ .hearing-impairment .audio-content::after {
+ content: " [Audio content with transcript available]";
+ color: var(--accent);
+ font-weight: bold;
+ }
+
+ .motor-disability button,
+ .motor-disability a,
+ .motor-disability input,
+ .motor-disability select {
+ padding: 12px 24px !important;
+ min-width: 48px !important;
+ min-height: 48px !important;
+ }
+
+ .cognitive-disability {
+ font-family: 'Arial', sans-serif;
+ }
+ .cognitive-disability p,
+ .cognitive-disability li {
+ line-height: 1.8 !important;
+ }
+ .cognitive-disability .complex-term {
+ border-bottom: 1px dotted;
+ cursor: help;
+ }
+
+ .seizure-safe * {
+ animation: none !important;
+ transition: none !important;
+ }
+
+ /* Speech Controls */
+ .speech-controls {
+ display: flex;
+ gap: 0.5rem;
+ margin-top: 0.5rem;
+ }
+ .speech-btn {
+ flex: 1;
+ padding: 0.5rem;
+ border: none;
+ border-radius: 5px;
+ background: var(--primary);
+ color: white;
+ cursor: pointer;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 0.3rem;
+ }
+ .speech-btn.stop {
+ background: #e74c3c;
+ }
+ /* Disability-Specific Options */
+ .disability-options {
+ display: none;
+ margin-top: 1rem;
+ }
+ .disability-options.visible {
+ display: block;
+ }
+ .disability-option {
+ display: flex;
+ align-items: center;
+ margin-bottom: 0.5rem;
+ }
+ .disability-option input {
+ margin-right: 0.5rem;
+ }
+ /* UX Principles Section */
+ .ux-principles {
+ padding: 6rem 5%;
+ background-color: white;
+ }
+ .section-title {
+ text-align: center;
+ font-size: 2.5rem;
+ margin-bottom: 4rem;
+ position: relative;
+ color: var(--dark);
+ }
+ .section-title::after {
+ content: '';
+ position: absolute;
+ bottom: -10px;
+ left: 50%;
+ transform: translateX(-50%);
+ width: 100px;
+ height: 4px;
+ background: linear-gradient(to right, var(--primary), var(--secondary));
+ border-radius: 2px;
+ }
+ .principles-container {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+ gap: 2rem;
+ max-width: 1200px;
+ margin: 0 auto;
+ }
+ .principle-card {
+ background: linear-gradient(135deg, #f5f7fa, #e4e8f0);
+ border-radius: 20px;
+ padding: 2.5rem;
+ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+ transition: all 0.3s ease;
+ position: relative;
+ overflow: hidden;
+ }
+ .principle-card:hover {
+ transform: translateY(-10px);
+ box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+ }
+ .principle-card::before {
+ content: '';
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 5px;
+ height: 100%;
+ background: linear-gradient(to bottom, var(--primary), var(--secondary));
+ }
+ .principle-title {
+ font-size: 1.5rem;
+ font-weight: 700;
+ margin-bottom: 1rem;
+ color: var(--primary);
+ }
+ .principle-description {
+ font-size: 1rem;
+ line-height: 1.6;
+ color: var(--dark);
+ }
+ /* Features Section */
+ .features {
+ padding: 6rem 5%;
+ background-color: var(--light);
+ }
+ .features-container {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+ gap: 2rem;
+ max-width: 1200px;
+ margin: 0 auto;
+ }
+ .feature-card {
+ background-color: white;
+ border-radius: 15px;
+ padding: 2rem;
+ box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+ transition: all 0.3s ease;
+ position: relative;
+ overflow: hidden;
+ }
+ .feature-card:hover {
+ transform: translateY(-5px);
+ box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+ }
+ .feature-icon {
+ font-size: 2.5rem;
+ margin-bottom: 1.5rem;
+ color: var(--primary);
+ }
+ .feature-title {
+ font-size: 1.5rem;
+ margin-bottom: 1rem;
+ color: var(--dark);
+ }
+ .feature-description {
+ font-size: 1rem;
+ line-height: 1.6;
+ color: #666;
+ }
+ /* Accessibility Features Section */
+ .accessibility-features {
+ padding: 6rem 5%;
+ background-color: white;
+ }
+ .accessibility-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+ gap: 2rem;
+ max-width: 1200px;
+ margin: 0 auto;
+ }
+ .accessibility-card {
+ background-color: var(--light);
+ border-radius: 15px;
+ padding: 2rem;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ text-align: center;
+ }
+ .accessibility-icon {
+ width: 80px;
+ height: 80px;
+ background: linear-gradient(135deg, var(--primary), var(--secondary));
+ border-radius: 50%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin-bottom: 1.5rem;
+ color: white;
+ font-size: 2rem;
+ }
+ .accessibility-card h3 {
+ font-size: 1.5rem;
+ margin-bottom: 1rem;
+ color: var(--dark);
+ }
+ /* AI Assistants Section */
+ .ai-assistants {
+ padding: 6rem 5%;
+ background-color: var(--light);
+ }
+ .assistant-container {
+ max-width: 1200px;
+ margin: 0 auto;
+ display: flex;
+ gap: 3rem;
+ align-items: center;
+ }
+ .assistant-image {
+ flex: 1;
+ position: relative;
+ }
+ .assistant-image img {
+ width: 100%;
+ border-radius: 20px;
+ box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+ }
+ .assistant-content {
+ flex: 1;
+ }
+ .assistant-buttons {
+ display: flex;
+ gap: 1rem;
+ margin-top: 2rem;
+ }
+ /* Disability-Specific Assistants */
+ .disability-assistants {
+ padding: 6rem 5%;
+ background-color: white;
+ }
+ .assistant-tabs {
+ display: flex;
+ justify-content: center;
+ margin-bottom: 2rem;
+ flex-wrap: wrap;
+ gap: 0.5rem;
+ }
+ .assistant-tab {
+ padding: 0.8rem 1.5rem;
+ background: var(--light);
+ border: none;
+ border-radius: 30px;
+ cursor: pointer;
+ transition: all 0.3s;
+ font-weight: 500;
+ color: var(--dark);
+ }
+ .assistant-tab.active {
+ background: var(--primary);
+ color: white;
+ }
+ .assistant-content {
+ display: none;
+ }
+ .assistant-content.active {
+ display: block;
+ }
+ /* UX Challenge Section */
+ .ux-challenge {
+ padding: 6rem 5%;
+ background: linear-gradient(135deg, var(--primary), var(--secondary));
+ color: white;
+ }
+ .challenge-container {
+ max-width: 800px;
+ margin: 0 auto;
+ text-align: center;
+ }
+ .challenge-text {
+ font-size: 1.2rem;
+ line-height: 1.8;
+ margin-bottom: 2rem;
+ color: white;
+ }
+ .challenge-highlight {
+ font-size: 1.8rem;
+ font-weight: 700;
+ margin: 2rem 0;
+ color: var(--accent);
+ }
+ /* Testimonials */
+ .testimonials {
+ padding: 6rem 5%;
+ background-color: white;
+ }
+ .testimonials-container {
+ max-width: 1200px;
+ margin: 0 auto;
+ }
+ .testimonial-slider {
+ position: relative;
+ overflow: hidden;
+ }
+ .testimonial-slide {
+ background-color: var(--light);
+ border-radius: 20px;
+ padding: 2.5rem;
+ margin: 0 1rem;
+ transition: all 0.5s ease;
+ }
+ .testimonial-content {
+ font-size: 1.1rem;
+ line-height: 1.8;
+ margin-bottom: 1.5rem;
+ font-style: italic;
+ color: var(--dark);
+ }
+ .testimonial-author {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ }
+ .author-avatar {
+ width: 60px;
+ height: 60px;
+ border-radius: 50%;
+ object-fit: cover;
+ margin-right: 1rem;
+ border: 3px solid var(--accent);
+ }
+ .author-info h4 {
+ font-size: 1.2rem;
+ margin-bottom: 0.2rem;
+ color: var(--dark);
+ }
+ .author-info p {
+ font-size: 0.9rem;
+ opacity: 0.8;
+ color: var(--dark);
+ }
+ /* Footer */
+ footer {
+ background-color: var(--dark);
+ color: white;
+ padding: 4rem 5% 2rem;
+ }
+ .footer-container {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+ gap: 2rem;
+ max-width: 1200px;
+ margin: 0 auto;
+ }
+ .footer-logo {
+ font-size: 1.8rem;
+ font-weight: 700;
+ margin-bottom: 1rem;
+ display: inline-block;
+ color: white;
+ }
+ .footer-logo span {
+ color: var(--accent);
+ }
+ .footer-about {
+ font-size: 0.9rem;
+ line-height: 1.6;
+ opacity: 0.8;
+ margin-bottom: 1.5rem;
+ color: white;
+ }
+ .social-links {
+ display: flex;
+ gap: 1rem;
+ }
+ .social-link {
+ width: 40px;
+ height: 40px;
+ border-radius: 50%;
+ background-color: rgba(255, 255, 255, 0.1);
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ transition: all 0.3s ease;
+ }
+ .social-link:hover, .social-link:focus {
+ background-color: var(--accent);
+ transform: translateY(-3px);
+ outline: none;
+ }
+ .footer-links h3 {
+ font-size: 1.2rem;
+ margin-bottom: 1.5rem;
+ position: relative;
+ padding-bottom: 0.5rem;
+ color: white;
+ }
+ .footer-links h3::after {
+ content: '';
+ position: absolute;
+ bottom: 0;
+ left: 0;
+ width: 40px;
+ height: 2px;
+ background-color: var(--accent);
+ }
+ .footer-links ul {
+ list-style: none;
+ }
+ .footer-links li {
+ margin-bottom: 0.8rem;
+ }
+ .footer-links a {
+ color: white;
+ text-decoration: none;
+ opacity: 0.8;
+ transition: all 0.3s ease;
+ font-size: 0.9rem;
+ }
+ .footer-links a:hover, .footer-links a:focus {
+ opacity: 1;
+ color: var(--accent);
+ padding-left: 5px;
+ outline: none;
+ }
+ .footer-newsletter input {
+ width: 100%;
+ padding: 0.8rem;
+ border: none;
+ border-radius: 5px;
+ margin-bottom: 1rem;
+ background-color: rgba(255, 255, 255, 0.1);
+ color: white;
+ }
+ .footer-newsletter input::placeholder {
+ color: rgba(255, 255, 255, 0.7);
+ }
+ .footer-newsletter button {
+ background-color: var(--accent);
+ color: white;
+ border: none;
+ padding: 0.8rem 1.5rem;
+ border-radius: 5px;
+ cursor: pointer;
+ transition: all 0.3s ease;
+ font-weight: 600;
+ }
+ .footer-newsletter button:hover, .footer-newsletter button:focus {
+ background-color: #ff5d9e;
+ outline: none;
+ }
+ .copyright {
+ text-align: center;
+ padding-top: 3rem;
+ margin-top: 2rem;
+ border-top: 1px solid rgba(255, 255, 255, 0.1);
+ font-size: 0.9rem;
+ opacity: 0.7;
+ color: white;
+ }
+ .copyright a {
+ color: var(--accent);
+ }
+ /* Animations */
+ @keyframes float {
+ 0%, 100% { transform: translateY(0); }
+ 50% { transform: translateY(-20px); }
+ }
+ .floating {
+ animation: float 6s ease-in-out infinite;
+ }
+ /* Focus styles for keyboard navigation */
+ *:focus {
+ outline: 3px solid var(--primary);
+ outline-offset: 2px;
+ }
+ button:focus {
+ outline: 3px solid var(--accent);
+ }
+ /* Dark mode */
+ @media (prefers-color-scheme: dark) {
+ :root {
+ --light: #2d3436;
+ --dark: #f5f6fa;
+ }
+ body {
+ background-color: #1e272e;
+ }
+ .principle-card {
+ background: linear-gradient(135deg, #2d3436, #1e272e);
+ color: white;
+ }
+ .feature-card {
+ background-color: #2d3436;
+ color: white;
+ }
+ .feature-description {
+ color: #bbb;
+ }
+ .accessibility-panel {
+ background: #2d3436;
+ color: white;
+ }
+ .accessibility-btn {
+ background: #3d454d;
+ color: white;
+ border-color: #555;
+ }
+ /* Ensure text remains visible in dark mode */
+ .section-title, .feature-title, .accessibility-card h3, .principle-title, .principle-description, .testimonial-content, .author-info h4, .author-info p {
+ color: var(--dark) !important;
+ }
+ }
+ /* Responsive */
+ @media (max-width: 992px) {
+ .hero {
+ flex-direction: column;
+ text-align: center;
+ }
+ .subtitle {
+ margin-left: auto;
+ margin-right: auto;
+ }
+ .stats {
+ justify-content: center;
+ }
+ .principles-container {
+ grid-template-columns: 1fr;
+ }
+ .assistant-container {
+ flex-direction: column;
+ }
+ }
+ @media (max-width: 768px) {
+ h1 {
+ font-size: 2.5rem;
+ }
+ .stats {
+ flex-wrap: wrap;
+ justify-content: flex-start;
+ }
+ .nav-links {
+ display: none;
+ }
+ .accessibility-panel {
+ bottom: 10px;
+ right: 10px;
+ width: calc(100% - 20px);
+ }
+ .accessibility-options {
+ grid-template-columns: 1fr;
+ }
+ }
+ /* Fix for white title in UX Challenge section */
+ .ux-challenge .section-title {
+ color: white !important;
+ text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+ }
+ .ux-challenge .section-title::after {
+ background: var(--accent) !important;
+ }
+ /* Fix all text color issues */
+ .section-title, .feature-title, .accessibility-card h3, .footer-logo, .footer-links h3, .footer-newsletter h3, .copyright, .copyright a {
+ color: inherit !important;
+ }
+ /* Force dark text in light sections */
+ .ux-principles, .features, .accessibility-features, .ai-assistants, .disability-assistants, .testimonials {
+ color: var(--dark) !important;
+ }
+ /* Force white text in dark sections */
+ header, .ux-challenge, footer {
+ color: white !important;
+ }
+ /* Fix footer contrast */
+ footer {
+ background-color: var(--dark) !important;
+ }
+ footer a, .footer-about, .footer-links a {
+ color: white !important;
+ opacity: 0.9 !important;
+ }
+ footer a:hover {
+ color: var(--accent) !important;
+ }
+ /* Fix newsletter input */
+ .footer-newsletter input {
+ background-color: rgba(255,255,255,0.2) !important;
+ color: white !important;
+ }
+ .footer-newsletter input::placeholder {
+ color: rgba(255,255,255,0.7) !important;
+ }
+ </style>
+ <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+ <!-- Dyslexia Font -->
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=OpenDyslexic:wght@400;700&display=swap">
+</head>
+<body>
+ <!-- Skip to content link for keyboard users -->
+ <a href="#main-content" class="skip-link">Skip to main content</a>
+ <header>
+ <div class="particles" id="particles-js"></div>
+ <div class="header-content">
+ <nav>
+ <div class="logo">Neuro<span>Learn</span></div>
+ <div class="nav-links">
+ <a href="#">Home</a>
+ <a href="#features">Features</a>
+ <a href="#ux-principles">UX Principles</a>
+ <a href="#pricing">Pricing</a>
+ <a href="#contact">Contact</a>
+ </div>
+ <button id="accessibilityNavToggle" aria-label="Open accessibility controls" aria-expanded="false" style="background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">
+ <i class="fas fa-universal-access"></i>
+ </button>
+ </nav>
+ <main id="main-content">
+ <div class="hero">
+ <div class="hero-text">
+ <h1>Where <span>Technology</span> Meets Exceptional <span>User Experience</span></h1>
+ <p class="subtitle">In today's digital world, great technology isn't enough — it has to feel great too. NeuroLearn combines cutting-edge AI with intuitive design to create learning experiences that are as delightful as they are effective.</p>
+ <a href="#" class="cta-button">Experience the Difference</a>
+ <div class="stats">
+ <div class="stat-item">
+ <div class="stat-number">98%</div>
+ <div class="stat-label">User Satisfaction</div>
+ </div>
+ <div class="stat-item">
+ <div class="stat-number">10x</div>
+ <div class="stat-label">Faster Learning</div>
+ </div>
+ <div class="stat-item">
+ <div class="stat-number">24/7</div>
+ <div class="stat-label">AI Tutor Access</div>
+ </div>
+ </div>
+ </div>
+ <div class="hero-image floating">
+ <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="AI Learning Platform Interface showing adaptive learning technology">
+ </div>
+ </div>
+ </main>
+ </div>
+ </header>
+
+ <!-- Accessibility Controls Panel -->
+ <div class="accessibility-panel" id="accessibilityPanel" aria-hidden="true">
+ <button class="accessibility-toggle" id="closeAccessibility" aria-label="Close accessibility controls">
+ <i class="fas fa-times"></i>
+ </button>
+ <h3 style="margin-bottom: 1rem; text-align: center;">Accessibility Controls</h3>
+ <div class="accessibility-section">
+ <h4>Text & Display</h4>
+ <div class="accessibility-options">
+ <button class="accessibility-btn" id="increaseFont">
+ <i class="fas fa-text-height"></i>
+ <span>Increase Text</span>
+ </button>
+ <button class="accessibility-btn" id="decreaseFont">
+ <i class="fas fa-text-width"></i>
+ <span>Decrease Text</span>
+ </button>
+ <button class="accessibility-btn" id="highContrast">
+ <i class="fas fa-adjust"></i>
+ <span>High Contrast</span>
+ </button>
+ <button class="accessibility-btn" id="dyslexiaMode">
+ <i class="fas fa-font"></i>
+ <span>Dyslexia Mode</span>
+ </button>
+ <button class="accessibility-btn" id="grayscale">
+ <i class="fas fa-palette"></i>
+ <span>Grayscale</span>
+ </button>
+ <button class="accessibility-btn" id="resetAccessibility">
+ <i class="fas fa-undo"></i>
+ <span>Reset All</span>
+ </button>
+ </div>
+ </div>
+ <div class="accessibility-section">
+ <h4>Speech Controls</h4>
+ <div class="speech-controls">
+ <button class="speech-btn" id="readPage">
+ <i class="fas fa-volume-up"></i>
+ <span>Read Page</span>
+ </button>
+ <button class="speech-btn stop" id="stopSpeech">
+ <i class="fas fa-stop"></i>
+ <span>Stop</span>
+ </button>
+ </div>
+ <div class="disability-options" id="speechOptions">
+ <div class="disability-option">
+ <input type="radio" id="readAll" name="speechOption" value="all" checked>
+ <label for="readAll">Read entire page</label>
+ </div>
+ <div class="disability-option">
+ <input type="radio" id="readMain" name="speechOption" value="main">
+ <label for="readMain">Read main content only</label>
+ </div>
+ <div class="disability-option">
+ <input type="radio" id="readSection" name="speechOption" value="section">
+ <label for="readSection">Read current section</label>
+ </div>
+ </div>
+ </div>
+ <div class="accessibility-section">
+ <h4>Disability-Specific Modes</h4>
+ <button class="accessibility-btn" id="showDisabilityOptions">
+ <i class="fas fa-wheelchair"></i>
+ <span>Show Options</span>
+ </button>
+ <div class="disability-options" id="disabilityOptions">
+ <div class="disability-option">
+ <input type="checkbox" id="visualImpairment">
+ <label for="visualImpairment">Visual Impairment Mode</label>
+ </div>
+ <div class="disability-option">
+ <input type="checkbox" id="hearingImpairment">
+ <label for="hearingImpairment">Hearing Impairment Mode</label>
+ </div>
+ <div class="disability-option">
+ <input type="checkbox" id="motorDisability">
+ <label for="motorDisability">Motor Disability Mode</label>
+ </div>
+ <div class="disability-option">
+ <input type="checkbox" id="cognitiveDisability">
+ <label for="cognitiveDisability">Cognitive Disability Mode</label>
+ </div>
+ <div class="disability-option">
+ <input type="checkbox" id="seizureSafe">
+ <label for="seizureSafe">Seizure Safe Mode</label>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <section class="ux-principles" id="ux-principles">
+ <h2 class="section-title" style="color: var(--dark);">Our UX-First Philosophy</h2>
+ <div class="principles-container">
+ <div class="principle-card">
+ <h3 class="principle-title">Intuitive by Design</h3>
+ <p class="principle-description">Every interaction feels natural and effortless. We've eliminated complexity so you can focus on learning, not figuring out how to use the platform.</p>
+ </div>
+ <div class="principle-card">
+ <h3 class="principle-title">Accessible to All</h3>
+ <p class="principle-description">Designed with inclusivity in mind, our platform adapts to diverse needs and learning styles, ensuring everyone can benefit equally.</p>
+ </div>
+ <div class="principle-card">
+ <h3 class="principle-title">Delightful Interactions</h3>
+ <p class="principle-description">From micro-animations to personalized feedback, we've infused joy into every part of the learning journey.</p>
+ </div>
+ </div>
+ </section>
+
+ <section class="features" id="features">
+ <h2 class="section-title">UX-Centric Features</h2>
+ <div class="features-container">
+ <div class="feature-card">
+ <div class="feature-icon">
+ <i class="fas fa-magic"></i>
+ </div>
+ <h3 class="feature-title">One-Click Learning</h3>
+ <p class="feature-description">Our simplified interface gets you learning faster with minimal setup. Just choose your topic and let our AI guide you.</p>
+ </div>
+ <div class="feature-card">
+ <div class="feature-icon">
+ <i class="fas fa-robot"></i>
+ </div>
+ <h3 class="feature-title">Context-Aware AI Tutor</h3>
+ <p class="feature-description">Our AI understands not just what you're learning, but how you're learning it, adapting in real-time to your unique needs.</p>
+ </div>
+ <div class="feature-card">
+ <div class="feature-icon">
+ <i class="fas fa-brain"></i>
+ </div>
+ <h3 class="feature-title">Cognitive Load Optimization</h3>
+ <p class="feature-description">We carefully balance information presentation to maximize retention while minimizing mental fatigue.</p>
+ </div>
+ <div class="feature-card">
+ <div class="feature-icon">
+ <i class="fas fa-hands-helping"></i>
+ </div>
+ <h3 class="feature-title">Just-in-Time Help</h3>
+ <p class="feature-description">Contextual assistance appears exactly when needed and disappears when not, keeping your focus undisturbed.</p>
+ </div>
+ <div class="feature-card">
+ <div class="feature-icon">
+ <i class="fas fa-chart-line"></i>
+ </div>
+ <h3 class="feature-title">Progress Visualization</h3>
+ <p class="feature-description">Beautiful, intuitive dashboards show your learning journey at a glance with actionable insights.</p>
+ </div>
+ <div class="feature-card">
+ <div class="feature-icon">
+ <i class="fas fa-sliders-h"></i>
+ </div>
+ <h3 class="feature-title">Personalized UX Settings</h3>
+ <p class="feature-description">Tailor the interface to your preferences with our extensive personalization options.</p>
+ </div>
+ </div>
+ </section>
+
+ <section class="accessibility-features">
+ <h2 class="section-title">Built-In Accessibility</h2>
+ <div class="accessibility-grid">
+ <div class="accessibility-card">
+ <div class="accessibility-icon">
+ <i class="fas fa-eye"></i>
+ </div>
+ <h3>Visual Accessibility</h3>
+ <p>Screen reader compatibility, high contrast modes, text resizing, and color blindness adjustments.</p>
+ </div>
+ <div class="accessibility-card">
+ <div class="accessibility-icon">
+ <i class="fas fa-assistive-listening-systems"></i> <!-- Updated icon class -->
+ </div>
+ <h3>Auditory Support</h3>
+ <p>Closed captions, transcripts, visual alerts, and adjustable playback speeds for all audio content.</p>
+ </div>
+ <div class="accessibility-card">
+ <div class="accessibility-icon">
+ <i class="fas fa-hand-paper"></i>
+ </div>
+ <h3>Motor Adaptation</h3>
+ <p>Full keyboard navigation, voice control compatibility, and reduced need for precise inputs.</p>
+ </div>
+ <div class="accessibility-card">
+ <div class="accessibility-icon">
+ <i class="fas fa-lightbulb"></i>
+ </div>
+ <h3>Cognitive Considerations</h3>
+ <p>Clear language, consistent navigation, distraction reduction, and memory aids throughout.</p>
+ </div>
+ </div>
+ </section>
+
+ <section class="ai-assistants">
+ <h2 class="section-title">Your AI Learning Companions</h2>
+ <div class="assistant-container">
+ <div class="assistant-image floating">
+ <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="AI assistant interface showing friendly chatbot">
+ </div>
+ <div class="assistant-content">
+ <h3 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--primary);">Meet Your Personal Learning Assistant</h3>
+ <p style="font-size: 1.1rem; margin-bottom: 1.5rem; line-height: 1.8;">Our AI doesn't just teach - it understands. Using natural language processing and emotional intelligence algorithms, your assistant adapts to your learning style, mood, and even your schedule to provide the perfect learning experience at the perfect time.</p>
+ <p style="font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.8;">Whether you need a patient explainer, a challenging quizmaster, or an encouraging coach, your AI assistant transforms to meet your needs.</p>
+ <div class="assistant-buttons">
+ <a href="#" class="cta-button" style="background-color: var(--primary);">Try the Demo</a>
+ <a href="#" class="cta-button" style="background-color: transparent; border: 2px solid var(--primary); color: var(--primary);">See How It Works</a>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <section class="disability-assistants">
+ <h2 class="section-title">Specialized Assistance</h2>
+ <div class="assistant-tabs">
+ <button class="assistant-tab active" data-tab="visual">Visual Impairment</button>
+ <button class="assistant-tab" data-tab="hearing">Hearing Impairment</button>
+ <button class="assistant-tab" data-tab="motor">Motor Disability</button>
+ <button class="assistant-tab" data-tab="cognitive">Cognitive Differences</button>
+ </div>
+ 
+ <div class="assistant-content active" id="visual-content">
+ <div class="assistant-container">
+ <div class="assistant-image">
+ <img src="https://images.unsplash.com/photo-1546483875-ad9014c88eba?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Close-up of a person using a screen reader with headphones and braille display">
+ </div>
+ <div class="assistant-content">
+ <h3>Visual Assistance Technology</h3>
+ <p>Our platform seamlessly integrates with screen readers while providing enhanced audio descriptions, tactile learning options, and voice-controlled navigation. The AI assistant provides detailed verbal explanations of visual content and can adapt presentation styles based on your level of visual ability.</p>
+ <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+ <li style="margin-bottom: 0.5rem;">Compatible with JAWS, NVDA, and VoiceOver</li>
+ <li style="margin-bottom: 0.5rem;">Dynamic text-to-speech with adjustable speeds</li>
+ <li style="margin-bottom: 0.5rem;">Audio-based navigation cues</li>
+ <li style="margin-bottom: 0.5rem;">High contrast and large text modes</li>
+ </ul>
+ </div>
+ </div>
+ </div>
+ 
+ <div class="assistant-content" id="hearing-content">
+ <div class="assistant-container">
+ <div class="assistant-image">
+ <img src="https://images.unsplash.com/photo-1607962837359-5e7e89f86776?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Video with closed captions and sign language interpreter">
+ </div>
+ <div class="assistant-content">
+ <h3>Hearing Assistance Technology</h3>
+ <p>All audio content is automatically captioned with adjustable display options. Our system can integrate with sign language avatars and provides visual alternatives to audio cues. The platform also offers speech-to-text functionality for interactive discussions.</p>
+ <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+ <li style="margin-bottom: 0.5rem;">Real-time closed captions with speaker identification</li>
+ <li style="margin-bottom: 0.5rem;">Visual alert systems</li>
+ <li style="margin-bottom: 0.5rem;">Sign language interpretation options</li>
+ <li style="margin-bottom: 0.5rem;">Vibration patterns for notifications</li>
+ </ul>
+ </div>
+ </div>
+ </div>
+ 
+ <div class="assistant-content" id="motor-content">
+ <div class="assistant-container">
+ <div class="assistant-image">
+ <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Person using head pointer to interact with computer">
+ </div>
+ <div class="assistant-content">
+ <h3>Motor Assistance Technology</h3>
+ <p>The platform is fully operable through keyboard, voice commands, eye tracking, and adaptive devices. We've eliminated time-sensitive interactions and provide alternatives for drag-and-drop activities. The interface can be customized to reduce the need for precise pointer control.</p>
+ <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+ <li style="margin-bottom: 0.5rem;">Customizable input timeout settings</li>
+ <li style="margin-bottom: 0.5rem;">Voice command integration</li>
+ <li style="margin-bottom: 0.5rem;">Alternative input device compatibility</li>
+ <li style="margin-bottom: 0.5rem;">Reduced fine motor requirements</li>
+ </ul>
+ </div>
+ </div>
+ </div>
+ 
+ <div class="assistant-content" id="cognitive-content">
+ <div class="assistant-container">
+ <div class="assistant-image">
+ <img src="https://images.unsplash.com/photo-1591696205602-2f950c417cb9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Simplified interface with clear instructions">
+ </div>
+ <div class="assistant-content">
+ <h3>Cognitive Assistance Technology</h3>
+ <p>We offer simplified interfaces, reading assistance tools, memory aids, and distraction-reduced modes. The AI assistant can rephrase complex concepts, provide step-by-step guidance, and offer frequent reinforcement. Users can control the amount of information presented at once and set personalized reminders.</p>
+ <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+ <li style="margin-bottom: 0.5rem;">Text simplification options</li>
+ <li style="margin-bottom: 0.5rem;">Focus mode to reduce distractions</li>
+ <li style="margin-bottom: 0.5rem;">Visual organization tools</li>
+ <li style="margin-bottom: 0.5rem;">Customizable repetition settings</li>
+ </ul>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <section class="ux-challenge">
+ <div class="challenge-container">
+ <h2 class="section-title">The UX Challenge</h2>
+ <p class="challenge-text">Most learning platforms focus on content delivery without considering how users interact with that content. We started with a different question:</p>
+ <div class="challenge-highlight">"How would we design this if learning success depended entirely on the user experience?"</div>
+ <p class="challenge-text">The answer became NeuroLearn - where every pixel, interaction, and algorithm is optimized to remove barriers and amplify learning potential.</p>
+ <a href="#" class="cta-button" style="background-color: white; color: var(--primary); margin-top: 2rem;">Join the UX Revolution</a>
+ </div>
+ </section>
+
+ <section class="testimonials">
+ <h2 class="section-title">What Learners Say</h2>
+ <div class="testimonials-container">
+ <div class="testimonial-slider">
+ <div class="testimonial-slide">
+ <p class="testimonial-content">"As someone with dyslexia, I've always struggled with online learning platforms. NeuroLearn's dyslexia mode and audio support have changed everything for me. I'm finally able to focus on learning rather than fighting with the interface."</p>
+ <div class="testimonial-author">
+ <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah J." class="author-avatar">
+ <div class="author-info">
+ <h4>Sarah J.</h4>
+ <p>Graphic Designer</p>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <footer>
+ <div class="footer-container">
+ <div class="footer-about">
+ <div class="footer-logo">Neuro<span>Learn</span></div>
+ <p class="footer-about">Making learning accessible and enjoyable through thoughtful design and innovative technology.</p>
+ <div class="social-links">
+ <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+ <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+ <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+ <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+ </div>
+ </div>
+ <div class="footer-links">
+ <h3>Product</h3>
+ <ul>
+ <li><a href="#">Features</a></li>
+ <li><a href="#">Pricing</a></li>
+ <li><a href="#">Accessibility</a></li>
+ <li><a href="#">Roadmap</a></li>
+ <li><a href="#">Demo</a></li>
+ </ul>
+ </div>
+ <div class="footer-links">
+ <h3>Resources</h3>
+ <ul>
+ <li><a href="#">Blog</a></li>
+ <li><a href="#">UX Research</a></li>
+ <li><a href="#">Learning Guides</a></li>
+ <li><a href="#">Webinars</a></li>
+ <li><a href="#">Accessibility Toolkit</a></li>
+ </ul>
+ </div>
+ <div class="footer-links">
+ <h3>Company</h3>
+ <ul>
+ <li><a href="#">About Us</a></li>
+ <li><a href="#">Careers</a></li>
+ <li><a href="#">Press</a></li>
+ <li><a href="#">Partners</a></li>
+ <li><a href="#">Contact</a></li>
+ </ul>
+ </div>
+ <div class="footer-newsletter">
+ <h3>Stay Updated</h3>
+ <input type="email" placeholder="Your email address" aria-label="Email for newsletter subscription">
+ <button type="submit">Subscribe</button>
+ </div>
+ </div>
+ <div class="copyright">
+ <p>&copy; 2025 NeuroLearn. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Accessibility Statement</a></p>
+ </div>
+ </footer>
+
+ <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+ <script>
+ // Accessibility Panel Toggle
+ const accessibilityNavToggle = document.getElementById('accessibilityNavToggle');
+ const accessibilityPanel = document.getElementById('accessibilityPanel');
+ const closeAccessibility = document.getElementById('closeAccessibility');
+ 
+ // Toggle panel visibility
+ function toggleAccessibilityPanel() {
+ const isExpanded = accessibilityNavToggle.getAttribute('aria-expanded') === 'true';
+ accessibilityNavToggle.setAttribute('aria-expanded', !isExpanded);
+ accessibilityPanel.setAttribute('aria-hidden', isExpanded);
+ accessibilityPanel.classList.toggle('visible');
+ 
+ // Move focus to panel when opening
+ if (!isExpanded) {
+ setTimeout(() => {
+ closeAccessibility.focus();
+ }, 100);
+ }
+ }
+ 
+ accessibilityNavToggle.addEventListener('click', toggleAccessibilityPanel);
+ 
+ // Close panel when clicking the close button
+ closeAccessibility.addEventListener('click', (e) => {
+ e.preventDefault();
+ accessibilityNavToggle.setAttribute('aria-expanded', 'false');
+ accessibilityPanel.setAttribute('aria-hidden', 'true');
+ accessibilityPanel.classList.remove('visible');
+ accessibilityNavToggle.focus();
+ });
+ 
+ // Close panel with Escape key
+ document.addEventListener('keydown', (e) => {
+ if (e.key === 'Escape' && accessibilityPanel.classList.contains('visible')) {
+ accessibilityNavToggle.setAttribute('aria-expanded', 'false');
+ accessibilityPanel.setAttribute('aria-hidden', 'true');
+ accessibilityPanel.classList.remove('visible');
+ accessibilityNavToggle.focus();
+ }
+ });
+ 
+ // Font Size Adjustment
+ const increaseFont = document.getElementById('increaseFont');
+ const decreaseFont = document.getElementById('decreaseFont');
+ 
+ increaseFont.addEventListener('click', () => {
+ const currentSize = parseFloat(getComputedStyle(document.body).fontSize);
+ document.body.style.fontSize = `${currentSize * 1.1}px`;
+ });
+ 
+ decreaseFont.addEventListener('click', () => {
+ const currentSize = parseFloat(getComputedStyle(document.body).fontSize);
+ document.body.style.fontSize = `${currentSize / 1.1}px`;
+ });
+ 
+ // High Contrast Mode
+ const highContrast = document.getElementById('highContrast');
+ highContrast.addEventListener('click', () => {
+ document.body.classList.toggle('high-contrast');
+ });
+ 
+ // Dyslexia Mode
+ const dyslexiaMode = document.getElementById('dyslexiaMode');
+ dyslexiaMode.addEventListener('click', () => {
+ document.body.classList.toggle('dyslexia-mode');
+ });
+ 
+ // Grayscale Mode
+ const grayscale = document.getElementById('grayscale');
+ grayscale.addEventListener('click', () => {
+ document.body.classList.toggle('grayscale');
+ });
+ 
+ // Reset Accessibility
+ const resetAccessibility = document.getElementById('resetAccessibility');
+ resetAccessibility.addEventListener('click', () => {
+ document.body.className = '';
+ document.body.style.fontSize = '';
+ });
+ 
+ // Speech Controls
+ const readPage = document.getElementById('readPage');
+ const stopSpeech = document.getElementById('stopSpeech');
+ const showDisabilityOptions = document.getElementById('showDisabilityOptions');
+ const disabilityOptions = document.getElementById('disabilityOptions');
+ 
+ showDisabilityOptions.addEventListener('click', () => {
+ disabilityOptions.classList.toggle('visible');
+ });
+ 
+ // Disability-Specific Assistants Tabs
+ const tabs = document.querySelectorAll('.assistant-tab');
+ tabs.forEach(tab => {
+ tab.addEventListener('click', () => {
+ // Remove active class from all tabs and content
+ document.querySelectorAll('.assistant-tab').forEach(t => t.classList.remove('active'));
+ document.querySelectorAll('.assistant-content').forEach(c => c.classList.remove('active'));
+ 
+ // Add active class to clicked tab
+ tab.classList.add('active');
+ 
+ // Show corresponding content
+ const tabId = tab.getAttribute('data-tab');
+ document.getElementById(`${tabId}-content`).classList.add('active');
+ });
+ });
+ 
+ // Initialize particles.js
+ particlesJS('particles-js', {
+ particles: {
+ number: { value: 80, density: { enable: true, value_area: 800 } },
+ color: { value: "#ffffff" },
+ shape: { type: "circle" },
+ opacity: { value: 0.5, random: true },
+ size: { value: 3, random: true },
+ line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+ move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
+ },
+ interactivity: {
+ detect_on: "canvas",
+ events: {
+ onhover: { enable: true, mode: "repulse" },
+ onclick: { enable: true, mode: "push" }
+ }
+ }
+ });
+ 
+
+ // Add this to your existing JavaScript
+const visualImpairment = document.getElementById('visualImpairment');
+const hearingImpairment = document.getElementById('hearingImpairment');
+const motorDisability = document.getElementById('motorDisability');
+const cognitiveDisability = document.getElementById('cognitiveDisability');
+const seizureSafe = document.getElementById('seizureSafe');
+
+// Visual Impairment Mode
+visualImpairment.addEventListener('change', function() {
+ if(this.checked) {
+ document.body.classList.add('high-contrast');
+ document.body.style.fontSize = '18px';
+ } else {
+ document.body.classList.remove('high-contrast');
+ document.body.style.fontSize = '';
+ }
+});
+
+// Hearing Impairment Mode
+hearingImpairment.addEventListener('change', function() {
+ // This would trigger visual alternatives for audio content
+ if(this.checked) {
+ document.body.classList.add('hearing-impairment');
+ } else {
+ document.body.classList.remove('hearing-impairment');
+ }
+});
+
+// Motor Disability Mode
+motorDisability.addEventListener('change', function() {
+ // This would enlarge click targets and ensure keyboard navigation
+ if(this.checked) {
+ document.body.classList.add('motor-disability');
+ const buttons = document.querySelectorAll('button, a');
+ buttons.forEach(btn => {
+ btn.style.padding = '12px 24px';
+ btn.style.minWidth = '48px';
+ btn.style.minHeight = '48px';
+ });
+ } else {
+ document.body.classList.remove('motor-disability');
+ const buttons = document.querySelectorAll('button, a');
+ buttons.forEach(btn => {
+ btn.style.padding = '';
+ btn.style.minWidth = '';
+ btn.style.minHeight = '';
+ });
+ }
+});
+
+// Cognitive Disability Mode
+cognitiveDisability.addEventListener('change', function() {
+ // This would simplify the interface
+ if(this.checked) {
+ document.body.classList.add('cognitive-disability');
+ document.querySelectorAll('p, li, span').forEach(el => {
+ el.style.lineHeight = '1.8';
+ });
+ } else {
+ document.body.classList.remove('cognitive-disability');
+ document.querySelectorAll('p, li, span').forEach(el => {
+ el.style.lineHeight = '';
+ });
+ }
+});
+
+// Seizure Safe Mode
+seizureSafe.addEventListener('change', function() {
+ if(this.checked) {
+ document.body.classList.add('seizure-safe');
+ // Stop any animations
+ document.querySelectorAll('*').forEach(el => {
+ el.style.animation = 'none';
+ el.style.transition = 'none';
+ });
+ // Stop particles animation
+ if(window.pJSDom && window.pJSDom.length > 0) {
+ window.pJSDom[0].pJS.fn.pause();
+ }
+ } else {
+ document.body.classList.remove('seizure-safe');
+ // Re-enable reduced motion preferences
+ if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+ document.querySelectorAll('.floating').forEach(el => {
+ el.style.animation = 'float 6s ease-in-out infinite';
+ });
+ }
+ // Restart particles if they exist
+ if(window.pJSDom && window.pJSDom.length > 0) {
+ window.pJSDom[0].pJS.fn.play();
+ }
+ }
+});
+
+ // Simple text-to-speech functionality
+ let speechSynthesis = window.speechSynthesis;
+ 
+ readPage.addEventListener('click', () => {
+ if (speechSynthesis.speaking) {
+ speechSynthesis.cancel();
+ }
+ 
+ const speechOption = document.querySelector('input[name="speechOption"]:checked').value;
+ let textToRead = '';
+ 
+ if (speechOption === 'all') {
+ textToRead = document.body.innerText;
+ } else if (speechOption === 'main') {
+ textToRead = document.querySelector('main').innerText;
+ } else if (speechOption === 'section') {
+ // This would need more sophisticated section detection in a real implementation
+ textToRead = document.querySelector('section:not([class="accessibility-features"])').innerText;
+ }
+ 
+ const utterance = new SpeechSynthesisUtterance(textToRead);
+ speechSynthesis.speak(utterance);
+ });
+ 
+ stopSpeech.addEventListener('click', () => {
+ speechSynthesis.cancel();
+ });
+ </script>
+</body>
+</html>
