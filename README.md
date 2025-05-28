@@ -7,6 +7,7 @@ NeuroLearn is an accessibility-first learning platform built during a hackathon.
 ### Key Features ✨
 
 **🔧 Comprehensive Accessibility Panel**
+
 Custom controls tailored to user needs 🛠️:
 * Visual: High contrast, text resize, dyslexia-friendly fonts
 * Hearing: Visual alternatives for audio content
@@ -15,6 +16,7 @@ Custom controls tailored to user needs 🛠️:
 * Seizure Safety ⚡: Option to disable animations and motion
 
 **🎯 Disability-Specific Learning Modes**
+
 Specialized interfaces for 🎯:
 * Visual impairments: Screen reader compatibility, audio descriptions
 * Hearing impairments: Closed captions, sign language avatars
