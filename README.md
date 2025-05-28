@@ -60,4 +60,4 @@ Specialized interfaces for 🎯:
 * Learning analytics 📊 for user progress and platform improvement
 
 <h4 align="center"><strong>NeuroLearn isn’t just a project.</strong></h4>
-<h4 align="center"><strong>It’s a vision for truly inclusive education.We’re building a future where everyone can learn, no matter their needs. ♿📘</strong></h4>
+<h4 align="center"><strong>It’s a vision for truly inclusive education. We’re building a future where everyone can learn, no matter their needs. ♿📘</strong></h4>
