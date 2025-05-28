@@ -59,5 +59,5 @@ Specialized interfaces for 🎯:
 * Community features 👥 for peer learning
 * Learning analytics 📊 for user progress and platform improvement
 
-#### NeuroLearn isn’t just a project.
+<h4 align="center"><strong>NeuroLearn isn’t just a project.</strong></h4>
 #### It’s a vision for truly inclusive education.We’re building a future where everyone can learn, no matter their needs. ♿📘
